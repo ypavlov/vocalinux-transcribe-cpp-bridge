@@ -11,6 +11,28 @@ with GigaAM v3 E2E RNN-T Q8 on Intel Iris Xe.
 This project is not affiliated with or endorsed by VocaHQ, the transcribe.cpp
 authors, Handy, or the GigaAM authors.
 
+## Why this exists
+
+This project started with a curious look at Handy. Its list of supported speech
+recognition models was much larger than the one available in the dictation
+tool I was using, although Handy itself did not run reliably on my Linux
+system.
+
+While experimenting with it, I discovered GigaAM v3 E2E RNN-T: a
+Russian-language model only about 260 MB in size. On my laptop it felt roughly
+three times faster than my previous model and, subjectively, produced more
+accurate transcriptions.
+
+I asked Codex to integrate that model into Vocalinux. After about twenty
+minutes of inspecting both projects, building transcribe.cpp with Vulkan, and
+testing Vocalinux's Remote API, the first version of this bridge was running.
+
+The useful result turned out to be broader than the original experiment.
+Vocalinux remains untouched and upgradeable, while the bridge can load any
+compatible transcribe.cpp GGUF model—not only GigaAM. What began as a workaround
+for one small Russian model became a general connection between Vocalinux and
+the much wider transcribe.cpp model ecosystem.
+
 ## Features
 
 - OpenAI-compatible `POST /v1/audio/transcriptions`
