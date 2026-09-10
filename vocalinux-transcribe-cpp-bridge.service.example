@@ -1,0 +1,13 @@
+[Unit]
+Description=Local transcribe.cpp API bridge for Vocalinux
+After=graphical-session.target
+
+[Service]
+Type=simple
+EnvironmentFile=%h/.config/vocalinux-transcribe-cpp-bridge.env
+ExecStart=/usr/bin/env sh -c 'exec "$UV_BIN" run --no-project python "$BRIDGE_DIR/server.py"'
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target
